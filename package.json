@@ -1,17 +1,39 @@
 {
   "name": "grip-voice-assistant",
+  "version": "2.0.0",
+  "description": "A premium, modern voice assistant interface powered by Vapi AI with GSAP animations",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "vite": "^5.0.0"
+    "preview": "vite preview",
+    "lint": "eslint src --ext js",
+    "format": "prettier --write src/**/*.{js,css,html}"
   },
   "dependencies": {
-    "@vapi-ai/web": "^2.3.6"
+    "@vapi-ai/web": "^2.3.6",
+    "gsap": "^3.12.5"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.0"
+  },
+  "keywords": [
+    "voice-assistant",
+    "vapi",
+    "gsap",
+    "voice-interface",
+    "ai-assistant",
+    "speech-recognition"
+  ],
+  "author": "Ukauwa David <dukauwa.du@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dukauwa/grip-voice-assistant.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
