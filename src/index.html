@@ -2,18 +2,113 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Grip Voice Assistant - A premium, modern voice assistant interface powered by Vapi AI">
+    <meta name="theme-color" content="#5A4FEA">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Grip Voice Assistant">
+    <meta property="og:description" content="A premium, modern voice assistant interface">
+    <meta property="og:type" content="website">
+    
     <title>Grip Voice Assistant</title>
-    <link rel="stylesheet" href="/style.css">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Favicon -->
     <link rel="icon" href="https://raw.githubusercontent.com/bigsk1/voice-chat-ai/main/app/static/favicon.ico">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/styles/tokens.css">
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/components.css">
 </head>
 <body>
-    <div id="main-container">
-        <div id="transcription-container"></div>
-        <div id="waveform"></div>
-        <button id="record-button"></button>
+    <!-- Background Gradient Effects -->
+    <div class="background-gradient" aria-hidden="true">
+        <div class="gradient-orb primary"></div>
+        <div class="gradient-orb secondary"></div>
+        <div class="gradient-orb accent"></div>
     </div>
+
+    <!-- App Header -->
+    <header class="app-header" role="banner">
+        <div class="app-logo">
+            <div class="logo-icon" aria-hidden="true">🎤</div>
+            <span>Grip</span>
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: var(--space-lg);">
+            <!-- Status Badge -->
+            <div class="status-badge" role="status" aria-live="polite">
+                <div class="status-indicator" aria-hidden="true"></div>
+                <span class="status-text">Ready</span>
+            </div>
+            
+            <!-- Theme Toggle -->
+            <button 
+                class="theme-toggle" 
+                type="button"
+                aria-label="Toggle dark mode"
+                title="Toggle theme"
+            >
+                <div class="theme-toggle-thumb" aria-hidden="true">
+                    <span>🌙</span>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-container" role="main">
+        <div class="content-wrapper">
+            <!-- Transcription Display -->
+            <section class="transcription-container" aria-live="polite" aria-atomic="true">
+                <div class="transcription-card">
+                    <div class="speaker-label" style="display: none;"></div>
+                    <div class="transcription-text placeholder">
+                        Click the button to start
+                    </div>
+                </div>
+            </section>
+
+            <!-- Voice Control Button -->
+            <div class="voice-button-container">
+                <button 
+                    class="voice-button" 
+                    type="button"
+                    id="voice-button"
+                    aria-label="Start voice assistant"
+                    aria-pressed="false"
+                >
+                    <div class="button-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Waveform Visualization -->
+            <div class="waveform-container" aria-hidden="true" role="presentation">
+                <div id="waveform"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <!-- SiriWave for waveform visualization -->
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
+    
+    <!-- Main Application Script -->
     <script type="module" src="/script.js"></script>
+    
+    <!-- Screen Reader Announcements -->
+    <div class="sr-only" role="status" aria-live="assertive" aria-atomic="true" id="sr-announcements"></div>
 </body>
-</html> 
+</html>
