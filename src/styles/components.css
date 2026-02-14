@@ -1,0 +1,496 @@
+/**
+ * Component Styles
+ * 
+ * Modular component-based styles for the voice assistant UI.
+ */
+
+/* ==================== LAYOUT COMPONENTS ==================== */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-lg);
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3xl);
+  width: 100%;
+  max-width: 800px;
+  z-index: var(--z-base);
+  position: relative;
+}
+
+/* ==================== HEADER COMPONENT ==================== */
+
+.app-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg) var(--space-xl);
+  z-index: var(--z-sticky);
+  backdrop-filter: blur(10px);
+  background: var(--gradient-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* ==================== THEME TOGGLE ==================== */
+
+.theme-toggle {
+  position: relative;
+  width: 56px;
+  height: 32px;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  padding: 4px;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  transition: transform var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .theme-toggle-thumb {
+  transform: translateX(24px);
+}
+
+/* ==================== STATUS BADGE ==================== */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-base);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-text-tertiary);
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+.status-badge.active .status-indicator {
+  background: var(--color-success);
+  box-shadow: 0 0 8px var(--color-success);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-badge.listening .status-indicator {
+  background: var(--color-primary);
+  box-shadow: var(--glow-primary);
+}
+
+.status-badge.speaking .status-indicator {
+  background: var(--color-secondary);
+  box-shadow: var(--glow-secondary);
+}
+
+/* ==================== TRANSCRIPTION DISPLAY ==================== */
+
+.transcription-container {
+  width: 100%;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.transcription-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-xl) var(--space-2xl);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(20px);
+  width: 100%;
+  transition: all var(--transition-base);
+}
+
+.transcription-card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.transcription-text {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-relaxed);
+  letter-spacing: var(--letter-spacing-tight);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transcription-text.placeholder {
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-normal);
+}
+
+.speaker-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.speaker-label.user {
+  color: var(--color-accent);
+}
+
+.speaker-label.assistant {
+  color: var(--color-secondary);
+}
+
+/* ==================== VOICE BUTTON ==================== */
+
+.voice-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  position: relative;
+}
+
+.voice-button {
+  position: relative;
+  width: var(--size-button-2xl);
+  height: var(--size-button-2xl);
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  background: var(--gradient-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-xl), var(--glow-primary);
+  z-index: var(--z-base);
+  overflow: hidden;
+}
+
+.voice-button::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: -1;
+  filter: blur(20px);
+}
+
+.voice-button:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-2xl), var(--glow-primary);
+}
+
+.voice-button:hover::before {
+  opacity: 0.7;
+}
+
+.voice-button:active {
+  transform: scale(0.98);
+}
+
+.voice-button.recording {
+  background: linear-gradient(135deg, #EA4F4F 0%, #DC2626 100%);
+  box-shadow: var(--shadow-xl), var(--glow-error);
+  animation: pulse-button 1.5s ease-in-out infinite;
+}
+
+.voice-button.recording::before {
+  background: linear-gradient(135deg, #EA4F4F 0%, #DC2626 100%);
+  opacity: 0.5;
+}
+
+.button-icon {
+  width: 48px;
+  height: 48px;
+  color: white;
+  transition: transform var(--transition-base);
+  position: relative;
+  z-index: 1;
+}
+
+.voice-button:hover .button-icon {
+  transform: scale(1.1);
+}
+
+.voice-button.recording .button-icon {
+  animation: icon-pulse 1s ease-in-out infinite;
+}
+
+/* Ripple Effect */
+.voice-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: all var(--transition-slow);
+}
+
+.voice-button:active::after {
+  opacity: 1;
+  transform: scale(1);
+  transition: 0s;
+}
+
+/* ==================== WAVEFORM CONTAINER ==================== */
+
+.waveform-container {
+  width: 100%;
+  height: 120px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.waveform-canvas {
+  width: 100%;
+  height: 100%;
+  transition: all var(--transition-slow);
+  opacity: 0.8;
+}
+
+.waveform-container.active .waveform-canvas {
+  opacity: 1;
+}
+
+/* ==================== BACKGROUND EFFECTS ==================== */
+
+.background-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.gradient-orb {
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(80px);
+  animation: float 20s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+.gradient-orb.primary {
+  width: 400px;
+  height: 400px;
+  background: var(--color-primary);
+  top: -100px;
+  right: -100px;
+  animation-delay: 0s;
+}
+
+.gradient-orb.secondary {
+  width: 500px;
+  height: 500px;
+  background: var(--color-secondary);
+  bottom: -150px;
+  left: -150px;
+  animation-delay: -10s;
+}
+
+.gradient-orb.accent {
+  width: 300px;
+  height: 300px;
+  background: var(--color-accent);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -5s;
+}
+
+/* ==================== ANIMATIONS ==================== */
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-button {
+  0%, 100% {
+    box-shadow: var(--shadow-xl), var(--glow-error);
+  }
+  50% {
+    box-shadow: var(--shadow-2xl), 0 0 40px rgba(234, 79, 79, 0.8);
+  }
+}
+
+@keyframes icon-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: var(--space-md) var(--space-lg);
+  }
+  
+  .app-logo {
+    font-size: var(--font-size-lg);
+  }
+  
+  .content-wrapper {
+    gap: var(--space-2xl);
+    padding: 0 var(--space-md);
+  }
+  
+  .transcription-card {
+    padding: var(--space-lg) var(--space-xl);
+  }
+  
+  .transcription-text {
+    font-size: var(--font-size-xl);
+  }
+  
+  .voice-button {
+    width: var(--size-button-xl);
+    height: var(--size-button-xl);
+  }
+  
+  .button-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .waveform-container {
+    height: 80px;
+  }
+  
+  .gradient-orb.primary,
+  .gradient-orb.secondary,
+  .gradient-orb.accent {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: var(--space-md);
+  }
+  
+  .transcription-text {
+    font-size: var(--font-size-lg);
+  }
+  
+  .voice-button {
+    width: var(--size-button-lg);
+    height: var(--size-button-lg);
+  }
+  
+  .button-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
